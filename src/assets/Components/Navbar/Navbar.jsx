@@ -1,27 +1,46 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FaRegUserCircle } from "react-icons/fa";
+import { FaBarsStaggered } from "react-icons/fa6";
+import { useState } from 'react';
 
 const Navbar = () => {
+  //show navlinks
+  const [show, setShow] = useState(false)
+  //handle navLinks Show
+  const handleNavShow = () => {
+    setShow(!show)
+  }
   return (
-    <nav className="bg-blue-600 p-4">
+    <nav className="p-4 container mx-auto">
       <div className="container mx-auto flex justify-between items-center">
-        
+
         {/* Left: Logo */}
-        <div className="text-white text-2xl font-bold">
-          <a href="#">Logo</a>
+        <div className="text-3xl font-bold text-gray-700">
+          <a >Logo</a>
         </div>
 
         {/* Center: Navigation Links (hidden on mobile) */}
-        <div className="hidden md:flex space-x-6">
-          <a href="#" className="text-white hover:text-gray-300">Home</a>
-          <a href="#" className="text-white hover:text-gray-300">About</a>
-          <a href="#" className="text-white hover:text-gray-300">Services</a>
-          <a href="#" className="text-white hover:text-gray-300">Contact</a>
+        <div className="max-md:hidden">
+          <ul className='text-gray-500 flex space-x-6'>
+            <NavLink className="hover:text-gray-900" to="/">Home</NavLink>
+            <NavLink className="hover:text-gray-900" to="/about">About</NavLink>
+            <NavLink className="hover:text-gray-900" to="/career">Career</NavLink>
+          </ul>
         </div>
 
         {/* Right: Button */}
-        <div>
-          <button className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100">
-            Sign Up
+        <div className='flex items-center gap-3'>
+          <div className="relative">
+            <FaBarsStaggered onClick={handleNavShow} className='text-2xl hidden max-md:flex cursor-pointer' />
+            <ul className={`text-gray-500 absolute flex flex-col md:hidden bg-blue-100 text-center right-10 ${show?'flex': 'hidden'} `}>
+              <NavLink className=" px-6 py-2 hover:text-gray-900" to="/">Home</NavLink>
+              <NavLink className=" px-6 py-2 hover:text-gray-900" to="/about">About</NavLink>
+              <NavLink className=" px-6 py-2 hover:text-gray-900" to="/career">Career</NavLink>
+            </ul>
+          </div>
+          <FaRegUserCircle className='text-3xl' />
+          <button className=" font-semibold bg-gray-800 px-5 text-white py-2 rounded">
+            Sign In
           </button>
         </div>
       </div>
