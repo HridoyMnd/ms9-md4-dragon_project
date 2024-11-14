@@ -1,4 +1,4 @@
-import headerLogo from '../../../assets/logo.png'
+import headerLogo from '../../../Images/logo.png'
 import moment from 'moment';
 import Marquee from 'react-fast-marquee';
 const Header = () => {
